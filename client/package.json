@@ -1,8 +1,8 @@
 {
+  "homepage": "https://sankalp2009.github.io/Nexora_assignment",
   "name": "client",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://sankalp2009.github.io/Nexora_assignment",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
