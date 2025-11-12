@@ -7,4 +7,5 @@ export default defineConfig({
   build: {
     chunkSizeWarningLimit: 1000, // default is 500
   },
+  base: "/Nexora_assignment/",
 });
