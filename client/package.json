@@ -2,8 +2,11 @@
   "name": "client",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://sankalp2009.github.io/Nexora_assignment",
   "type": "module",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
@@ -29,6 +32,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.22",
     "globals": "^16.4.0",
+    "rollup-plugin-visualizer": "^6.0.5",
     "vite": "npm:rolldown-vite@7.1.14"
   },
   "overrides": {
