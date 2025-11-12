@@ -23,7 +23,7 @@ const CartItem = ({ item }) => {
     setIsUpdating(true);
 
     try {
-      const response = await fetch(`http://127.0.0.1:5000/api/cart`, {
+      const response = await fetch(`https://nexora-assignment-qg3v.onrender.com/api/cart`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -34,7 +34,7 @@ const CartItem = ({ item }) => {
 
       const result = await response.json();
       if (result.status === "success") {
-        mutate(`http://127.0.0.1:5000/api/cart`);
+        mutate(`https://nexora-assignment-qg3v.onrender.com/api/cart`);
         if (newQty === 0) {
           toast({
             title: "Removed from cart",
@@ -60,13 +60,13 @@ const CartItem = ({ item }) => {
   const deleteItem = async () => {
     setIsUpdating(true);
     try {
-      const response = await fetch(`http://127.0.0.1:5000/api/cart/${item._id}`, {
+      const response = await fetch(`https://nexora-assignment-qg3v.onrender.com/api/cart/${item._id}`, {
         method: "DELETE",
       });
 
       const result = await response.json();
       if (result.status === "success") {
-        mutate(`http://127.0.0.1:5000/api/cart`);
+        mutate(`https://nexora-assignment-qg3v.onrender.com/api/cart`);
         toast({
           title: "Item removed",
           status: "info",

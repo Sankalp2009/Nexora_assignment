@@ -28,7 +28,7 @@ import { useSWRConfig } from "swr";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-const API_URL = "http://127.0.0.1:5000/api/cart";
+const API_URL = "https://nexora-assignment-qg3v.onrender.com/api/cart";
 
 const Cart = () => {
   const { data, error, isLoading } = useSWR(API_URL, fetcher, {
@@ -62,7 +62,7 @@ const Cart = () => {
       // Save total before checkout (since cart will be cleared)
       setCheckoutTotal(total);
 
-      const response = await fetch(`http://127.0.0.1:5000/api/cart/checkout`, {
+      const response = await fetch(`https://nexora-assignment-qg3v.onrender.com/api/cart/checkout`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email }),

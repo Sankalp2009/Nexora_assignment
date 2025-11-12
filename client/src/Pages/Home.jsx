@@ -19,7 +19,7 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 function Home() {
   const { data, error, isLoading } = useSWR(
-    `http://127.0.0.1:5000/api/products`,
+    `https://nexora-assignment-qg3v.onrender.com/api/products`,
     fetcher
   );
 
@@ -31,7 +31,7 @@ function Home() {
 
   const handleAddToCart = async (productId) => {
     try {
-      const response = await fetch(`http://127.0.0.1:5000/api/cart`, {
+      const response = await fetch(`https://nexora-assignment-qg3v.onrender.com/api/cart`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -44,7 +44,7 @@ function Home() {
 
       if (result.status === "success") {
         // Revalidate cart to update the header badge
-        mutate(`http://127.0.0.1:5000/api/cart`);
+        mutate(`https://nexora-assignment-qg3v.onrender.com/api/cart`);
         
         toast({
           title: "Added to cart!",

@@ -18,7 +18,7 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const Header = () => {
   const { data } = useSWR(
-    `http://127.0.0.1:5000/api/cart`,
+    `https://nexora-assignment-qg3v.onrender.com/api/cart`,
     fetcher,
     {
       refreshInterval: 0,
