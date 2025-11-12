@@ -13,7 +13,6 @@ A robust, feature-rich e-commerce backend API built with Node.js, Express, and M
 - [Running the Application](#running-the-application)
 - [API Endpoints](#api-endpoints)
 - [Testing](#testing)
-- [Code Architecture](#code-architecture)
 - [Screenshots](#screenshots)
 - [Contributing](#contributing)
 
