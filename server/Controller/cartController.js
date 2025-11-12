@@ -37,7 +37,6 @@ export const getCart = async (req, res) => {
       data: { items: cartItems, total },
     });
   } catch (error) {
-    console.error("getCart error:", error);
     return res.status(500).json({
       status: "error",
       message: "Internal server error while fetching cart",
@@ -125,7 +124,7 @@ export const deleteCartItem = async (req, res) => {
       data: { items: cartItems, total },
     });
   } catch (error) {
-    console.error("deleteCartItem error:", error);
+
     return res.status(500).json({
       status: "error",
       message: "Error deleting cart item",
@@ -167,7 +166,6 @@ export const checkoutCart = async (req, res) => {
       data: receipt,
     });
   } catch (error) {
-    console.error("checkoutCart error:", error);
     return res.status(500).json({
       status: "error",
       message: "Checkout failed",

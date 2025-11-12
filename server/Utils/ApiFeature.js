@@ -4,50 +4,41 @@ class ApiFeature {
     this.queryString = queryString;
   }
 
-
   search() {
     const { search } = this.queryString;
     if (search) {
       const trimmed = search.trim();
 
-
-      if (Product.schema?.indexes?.some((idx) => "$**_text" in idx)) {
-        this.findQuery = this.findQuery.find({ $text: { $search: trimmed } });
-      } else {
-        this.findQuery = this.findQuery.find({
-          $or: [
-            { name: new RegExp(trimmed, "i") },
-            { description: new RegExp(trimmed, "i") },
-            { category: new RegExp(trimmed, "i") },
-            { brand: new RegExp(trimmed, "i") },
-          ],
-        });
-      }
+      // Always use regex search
+      this.findQuery = this.findQuery.find({
+        $or: [
+          { name: new RegExp(trimmed, "i") },
+          { description: new RegExp(trimmed, "i") },
+          { category: new RegExp(trimmed, "i") },
+          { brand: new RegExp(trimmed, "i") },
+        ],
+      });
     }
     return this;
   }
-
 
   filter() {
     const queryObj = { ...this.queryString };
     const excluded = ["page", "sort", "limit", "fields", "search"];
     excluded.forEach((field) => delete queryObj[field]);
 
-
     if (queryObj.category) {
       queryObj.category = { $in: [].concat(queryObj.category) };
     }
 
-   
     const queryStr = JSON.stringify(queryObj).replace(
       /\b(gte|gt|lte|lt)\b/g,
-      (m) => `$${m}`
+      (m) => `${m}`
     );
 
     this.findQuery = this.findQuery.find(JSON.parse(queryStr));
     return this;
   }
-
 
   sort() {
     const { sort } = this.queryString;
@@ -57,7 +48,6 @@ class ApiFeature {
     return this;
   }
 
-
   limitFields() {
     const { fields } = this.queryString;
     this.findQuery = fields
@@ -65,7 +55,6 @@ class ApiFeature {
       : this.findQuery.select("-__v");
     return this;
   }
-
 
   paginate() {
     const page = Math.max(1, parseInt(this.queryString.page) || 1);
@@ -78,6 +67,10 @@ class ApiFeature {
     return this;
   }
 
+  // Helper method to get the current query filter (for counting)
+  getQuery() {
+    return this.findQuery.getQuery();
+  }
 
   async exec() {
     return this.findQuery.lean().exec();
